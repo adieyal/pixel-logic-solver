@@ -2,7 +2,7 @@
 Non-linear optimisation to solve the Pixel Logic game
 
 The Pixel Logic game is an n x m grid with row and column constraints.
-
+```
 +-----+-------+----------+----------+
 |     |  1,1  |    2     |    1     |
 +=====+=======+==========+==========+
@@ -11,13 +11,16 @@ The Pixel Logic game is an n x m grid with row and column constraints.
 | 1,1 |   X   |          |    X     |
 +-----+-------+----------+----------+
 
+```
+
 Row constraints specify the total number of Xs in each row layed out contiguously (i.e. no gaps).
 Col constraints specify the total number of Xs in each column layed out contiguously (i.e. no gaps).
 
 If there are two numbers then there should be two contiguous segements separated by at least one space.
-e.g. 1, 1 cannot be [X|X| | ] it needs to be [X| |X| ] or [X| | |X]
+e.g. 1, 1 cannot be `[X|X| | ]` it needs to be `[X| |X| ]` or `[X| | |X]`
 
 Example constraints
+```
 row_constraints = [
     [5],
     [7],
@@ -30,7 +33,9 @@ row_constraints = [
     [1, 1],
     [7]
 ]
+```
 
+```
 col_constraints = [
     [5],
     [7],
@@ -43,6 +48,7 @@ col_constraints = [
     [4, 1],
     [1, 1]
 ]
+```
 
 I'm not ashamed to say that I built this because I couldn't beat my kid's highscore without cheating. Amazingly even with this solver, I am only a few seconds faster than his best time.
 
