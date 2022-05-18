@@ -1,5 +1,6 @@
-from prettytable import MSWORD_FRIENDLY, PrettyTable
-from solve import row, solve_puzzle
+from solve import solve_puzzle, Cell
+from renderer import RENDERER, get_renderer
+
 
 def load_input(prompt):
     print(prompt)
@@ -16,29 +17,16 @@ def load_input(prompt):
         i += 1
     return constraints
 
-def draw_table(cells, row_constraints, col_constraints):
-    ROWS = len(row_constraints)
-    COLS = len(col_constraints)
-    x = PrettyTable(header=False)
-    def fmt(x): return "X" if x == 1 else ""
-    x.set_style(MSWORD_FRIENDLY)
-    x.add_row([""] + [col_constraints[c] for c in range(COLS)])
-    for row in range(ROWS):
-        data = [row_constraints[row]] + \
-            [fmt(cells[(row, col)].value) for col in range(COLS)]
-        x.add_row(data)
-
-    print(x)
 
 def main():
-    row_constraints = load_input("Row constraints: ")    
-    col_constraints = load_input("Col constraints: ") 
-    ROWS = len(row_constraints)
-    COLS = len(col_constraints)
+    row_constraints = load_input("Row constraints: ")
+    col_constraints = load_input("Col constraints: ")
 
     cells = solve_puzzle(row_constraints, col_constraints)
+    renderer = get_renderer(RENDERER.ASCII)
 
-    draw_table(cells, row_constraints, col_constraints)   
+    renderer.render(cells, row_constraints, col_constraints)
+
 
 if __name__ == "__main__":
     main()

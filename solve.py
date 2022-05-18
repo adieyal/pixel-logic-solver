@@ -42,7 +42,7 @@ col_constraints = [
 ]
 
 """
-from typing import List, Tuple
+from typing import Iterator, List, Tuple
 
 import pyomo.environ as pyo
 
@@ -117,7 +117,7 @@ def col(idx, ROWS) -> List[Cell]:
     return [(row, idx) for row in range(ROWS)]
 
 
-def solve_puzzle(row_constraints, col_constraints):
+def solve_puzzle(row_constraints, col_constraints) -> Iterator[Cell]:
     # row_constraints = load_input("Row constraints: ")
     # col_constraints = load_input("Col constraints: ")
 
