@@ -53,6 +53,14 @@ from pyomo.gdp import Disjunction
 
 Cell = Tuple[int, int]
 
+def get_solver():
+    solver = SolverFactory("gdpopt")
+
+    def _solve(model):
+        return solver.solve(model, strategy="LOA", mip_solver="cbc")
+
+    return _solve
+
 
 def load_input(prompt):
     print(prompt)
@@ -213,9 +221,11 @@ def main():
 
     obj = sum(model.cells[i, j] for i in range(ROWS) for j in range(COLS))
     model.OBJ = pyo.Objective(expr=obj, sense=pyo.maximize)
+    solver = get_solver()
+    results = solver(model)
 
-    results = SolverFactory("gdpopt").solve(
-        model, strategy="LOA", mip_solver="cbc")
+    #results = SolverFactory("gdpopt").solve(
+    #    model, strategy="LOA", mip_solver="cbc")
 
     draw_table(model, row_constraints, col_constraints, ROWS, COLS)
 
