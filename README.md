@@ -54,3 +54,15 @@ I'm not ashamed to say that I built this because I couldn't beat my kid's highsc
 
 
 solve.py still needs to be improved, especially the creation of the disjunctions which are currently hardcoded to 9 or 10 columns and rows.
+
+# Installation
+- sudo apt install coinor-cbc
+- python -m venv .env
+- source .env/bin/activate
+- python -m pip install -r requirements.txt
+
+This script is currently user the cbc solver, it is possible to change this by updating the get_solver() function in solve.py
+
+# Run
+- python solve.py
+
